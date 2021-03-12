@@ -1,0 +1,337 @@
+.body {
+  font-family: sans-serif;
+  background-color: rgb(255, 255, 255);
+  font-family: 'Merriweather',
+    serif;
+
+}
+
+.icons {
+  display: flex;
+  width: 90%;
+  flex-direction: row;
+  font-size: 22px;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.h1 {
+  user-select: none;
+  letter-spacing: 2px;
+  color: black
+}
+
+.h2 {
+  /* border-bottom: #98cfed 1.5px dashed; */
+  letter-spacing: 2px;
+  color: rgba(0, 0, 0);
+  text-align: center;
+  margin-top: 0%;
+  padding-bottom: 5px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
+.description {
+  padding: 0.7rem;
+  color: blue;
+  border: 1px solid blue;
+  background-color: white;
+  width: 250px;
+}
+
+.p {
+  font-size: 15px;
+  font-weight: 600;
+  color: blue;
+  margin-bottom: 5px;
+}
+
+.container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.addimg {
+  cursor: pointer;
+  padding: 0.4rem;
+  font-size: 1.7rem;
+  color: white;
+  background-color: black;
+}
+
+.addimg:hover,
+.box:hover {
+  cursor: pointer;
+}
+
+.darktext {
+  color: black;
+  margin-right: 10px;
+}
+
+.box {
+  display: block;
+  width: 45px;
+  height: 22px;
+  background-color: black;
+  border: 1px solid blue;
+  transition: all 0.8s;
+}
+
+.circle {
+  float: left;
+  display: block;
+  transition: 0.6s;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+}
+
+.header__theme {
+  width: 170px;
+  display: flex;
+  align-items: center;
+  margin-top: -60px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.main__plans,
+.main__inwork,
+.main__stoped {
+  width: 28%;
+  display: block;
+  height: auto;
+  border: 1px solid blue;
+  padding: 0.7rem;
+  color: white;
+  background-color: white;
+}
+
+.plans {
+  margin-bottom: 10px;
+  padding: 0.5rem;
+  background-color: rgb(0, 0, 0);
+  font-size: 13px;
+}
+
+.task,
+.name {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+li {
+  list-style: none;
+  /* cursor: all-scroll; */
+  cursor: all-scroll;
+}
+
+ul {
+  margin-left: 0%;
+  padding-left: 0%;
+}
+
+.edit:hover,
+.next:hover {
+  cursor: pointer;
+}
+
+.editplansinner,
+.editworkinner,
+.editstopedinner {
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  display: block;
+  height: auto;
+  border: 1px solid black;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  color: blue;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.close {
+  text-align: end;
+  margin-right: auto;
+  margin-left: auto;
+  width: 85%;
+}
+
+.close:hover,
+.strelka:hover,
+.strelkadark:hover {
+  cursor: pointer;
+}
+
+.strelka {
+  background-color: blue;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 15%;
+}
+
+.avtor {
+  width: 100%;
+  height: -webkit-fill-available;
+  position: absolute;
+  top: 0%;
+  background-color: #ffffffb8;
+  left: 0;
+}
+
+.inneravtor {
+  margin-top: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display: block;
+  height: auto;
+  border: 10px solid blue;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  color: blue;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+
+
+
+/* dark */
+.circledark {
+  display: block;
+  transition: 0.9s;
+  height: 22px;
+  width: 22px;
+  float: right;
+  background-color: rgb(31, 31, 31);
+}
+
+.boxdark {
+  background-color: #ffffff;
+  border: 3px solid #ffffff;
+  transition: 0.6s;
+}
+
+.bodydark {
+  background-color: rgba(0, 0, 0, 0.88);
+  font-family: sans-serif;
+  transition: all .8s;
+}
+
+.h1dark {
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255);
+}
+
+.h2dark {
+  /* border-bottom :  rgba(255, 255, 255, 0.5) 1.5px dashed ; */
+  color: rgba(255, 255, 255);
+  letter-spacing: 2px;
+  text-align: center;
+  margin-top: 0%;
+  padding-bottom: 5px;
+}
+
+.darktextdark {
+  color: blue;
+  margin-right: 10px;
+}
+
+.main__plansdark,
+.main__inworkdark,
+.main__stopeddark {
+  border: 2px solid blue;
+  padding: 0.7rem;
+  color: rgb(255, 255, 255);
+  background-color: blue;
+  width: 28%;
+  display: block;
+  height: auto;
+}
+
+.pdark {
+  color: blue;
+}
+
+.descriptiondark {
+  color: blue;
+  border: 1px solid blue;
+  background-color: white;
+  padding: 0.7rem;
+  width: 250px;
+}
+
+.plansdark {
+  background-color: blue;
+  margin-bottom: 10px;
+  padding: 0.5rem;
+  font-size: 13px;
+}
+
+.editplansinnerdark,
+.editworkinnerdark,
+.editstopedinnerdark {
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  display: block;
+  height: auto;
+  border: 1px solid blue;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  background-color: blue;
+  text-align: center;
+}
+
+.strelkadark {
+  background-color: black;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+}
+
+
+ul[aria-dropeffect="move"] {
+  border-color: blue;
+  background: rgb(255, 255, 255);
+}
+
+/* drop target focus and dragover state */
+ul[aria-dropeffect="move"]:focus,
+ul[aria-dropeffect="move"].dragover {
+  outline: none;
+  box-shadow: 0 0 0 1px #fff, 0 0 0 3px blue;
+}
+
+
+
+.delete:hover {
+  cursor: pointer;
+}

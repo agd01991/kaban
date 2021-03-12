@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дмитриев Андрей 191-322</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,400;1,500;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="body">
+    <div class="container">
+        <div class="header">
+            <div class="header__createplan">
+                <h1 class="h1">Кабан</h1>
+                <p class="p">Новая задача</p>
+                <form v-on:submit.prevent='add'>
+                    <input class="description" type="text" v-model='inputvalue' placeholder="Описание">
+                    <span class="add_btn"><span v-on:click='add' class="addimg" alt="add">+</span><span>
+                </form>
+            </div>
+            <div class="header__theme">
+                <span class="darktext">Темная тема</span>
+                <span class="box">
+                    <span class="circle"></span>
+                </span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main__plans check" @drop='onDrop($event, "plans")' @dragover.prevent @dragenter.prevent>
+                <h2 class="h2">Планы({{ plans.length - this.countplans }})</h2>
+                <ul id='ol'>
+                    <li id='plans' class="plans" v-if="index!=0&&todo.id!=''" v-for="(todo, index) in plans"
+                        v-on:remove="plans.splice(index, 1)" draggable @dragstart='startDrag($event, todo)'>
+                        <span class="task">Задача N(<span class="number">{{todo.id }}</span>)</span></br>
+                        <span class="desc">{{todo.description}}</span>
+                        <div class="icons" style="text-align: end;">
+                            <div class="move"></div>
+                            <div>
+                                <i class="far fa-edit edit" v-on:click='edit'></i>
+                                <i class="far fa-check-circle next" @click="next1"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="main__inwork check" @drop='onDrop($event,"inwork")' @dragover.prevent @dragenter.prevent>
+                <h2 class="h2">В работе({{ inwork.length - this.countwork }})</h2>
+                <ul id='ol'>
+                    <li id="plans" class="plans" v-if="index!=0&&todo.id!=''" v-for="(todo, index) in inwork"
+                        v-on:remove="plans.splice(index, 1)" draggable @dragstart='startDrag($event, todo)'>
+                        <span class="task">Задача N(<span class="number">{{todo.id}}</span>)</span><br>
+                        <span class="desc">{{todo.description}}</span>
+                        <p class="p">Дата и время начала:</p>
+                        <span class="date">{{todo.datestart}}</span>
+                        <div class="icons" style="text-align: end;">
+                            <div class="move"></div>
+                            <div>
+                                <i class="far fa-edit edit" v-on:click='edit'></i>
+                                <i class="far fa-check-circle next" @click="next2"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="main__stoped check" @drop='onDrop($event, "completed")' @dragover.prevent @dragenter.prevent>
+                <h2 class="h2">Готово({{ completed.length - this.countstop }})</h2>
+                <ul id='ol'>
+                    <li id="plans" class="plans" v-if="index!=0&&todo.id!=''" v-for="(todo, index) in completed"
+                        v-on:remove="plans.splice(index, 1)" draggable @dragstart='startDrag($event, todo)'>
+                        <span class="task">Задача N(<span class="number">{{todo.id}}</span>)</span><br>
+                        <span class="desc">{{todo.description}}</span>
+                        <p class="p">Дата и время начала:</p>
+                        <span class="date">{{todo.datestart}}</span>
+                        <p class="p">Дата и время окончания:</p>
+                        <span class="dateend">{{todo.dateend}}</span>
+                        <div class="icons" style="text-align: end;">
+                            <div class="move"></div>
+                            <div>
+                                <i class="far fa-edit edit" v-on:click='edit'></i>
+                                <i class="fas fa-times-circle delete" @click="del"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="avtor">
+            <div class="inneravtor">
+                <p class="name">Введите имя:</p>
+                <form v-on:submit.prevent='avtor'>
+                    <input class="description" placeholder="Ваше имя" v-model='namevalue' type="text">
+                    <div class="strelka" v-on:click="avtor"><span
+                            style="color: white; font-size: 1.9rem;padding: rem;">Далее</span> </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="editplans check2"
+            style="display: none; width: 100%; height: -webkit-fill-available; position: absolute; top: 0%;left: 0%; background-color: rgba(247, 247, 247, 0.72);">
+            <div class="editplansinner">
+                <div class="close"><img @click="close" class="innerclose" src="img/close.png" alt="" width="45"></div>
+                <p class="p">Описание</p>
+                <input class="description" id="description1" type="text">
+                <p class="p">Статус</p>
+                <select id="select1" class="description" style=" width: 276px;" name="">
+                    <option value="1">План</option>
+                    <option value="2">В работе</option>
+                    <option value="3">Готово</option>
+                </select>
+                <div @click="savechanges" class="strelka"><i class="fas fa-arrow-right"
+                        style="color: white; font-size: 1.5rem;"></i></div>
+            </div>
+        </div>
+        <div class="editinwork check2"
+            style="display: none;width: 100%; height: -webkit-fill-available; position: absolute; top: 0%;left: 0%; background-color: rgba(247, 247, 247, 0.72);">
+            <div class="editworkinner">
+                <div class="close"><img class="innerclose" @click="close" src="img/close.png" alt="" width="45"></div>
+                <p class="p">Описание</p>
+                <input class="description" id="description2" type="text">
+                <p class="p">Статус</p>
+                <select id="select2" class="description" style=" width: 276px;" name="">
+                    <option value="1">План</option>
+                    <option value="2">В работе</option>
+                    <option value="3">Готово</option>
+                </select>
+                <p class="p">Дата и время начала</p>
+                <input class="description" id="date2" type="text">
+                <div @click="savechanges" class="strelka"><i class="fas fa-arrow-right"
+                        style="color: white; font-size: 1.5rem;"></i></div>
+            </div>
+        </div>
+        <div class="editstoped check2"
+            style="display: none;width: 100%; height: -webkit-fill-available; position: absolute; top: 0%;left: 0%; background-color: rgba(247, 247, 247, 0.72);">
+            <div class="editstopedinner">
+                <div class="close"><img class="innerclose" @click="close" src="img/close.png" alt="" width="45"></div>
+                <p class="p">Описание</p>
+                <input class="description" id="description3" type="text">
+                <p class="p">Статус</p>
+                <select id="select3" class="description" style=" width: 276px;" name="">
+                    <option value="1">План</option>
+                    <option value="2">В работе</option>
+                    <option value="3">Готово</option>
+                </select>
+                <p class="p">Дата и время начала</p>
+                <input class="description" id="date3" type="text">
+                <p class="p">Дата и время окончания</p>
+                <input class="description" id="dateend3" type="text">
+                <div @click="savechanges" class="strelka"><i class="fas fa-arrow-right"
+                        style="color: white; font-size: 1.5rem;"></i></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script src="https://code.jquery.com/ui/1.12.0-rc.1/jquery-ui.min.js"
+    integrity="sha256-mFypf4R+nyQVTrc8dBd0DKddGB5AedThU73sLmLWdc0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script type="module">
+    import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.esm.browser.js'
+      </script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+
+</html>
